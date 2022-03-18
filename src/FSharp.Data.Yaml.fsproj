@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+      
+    <PackageId>FSharp.Data.Yaml</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Yellowsink</Authors>
+    <Description>Yaml for F#, simple as that.</Description>
+    <PackageTags>F#; YAML; Data; Parsing; Serialisation; Deserialisation</PackageTags>
+    
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="YamlValue.fs" />
+    <Compile Include="YamlConversions.fs" />
+    <Compile Include="YamlExtensions.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="YamlDotNet" Version="11.2.1" />
+  </ItemGroup>
+
+</Project>

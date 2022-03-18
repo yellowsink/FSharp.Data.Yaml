@@ -1,12 +1,12 @@
-module Fsharp.Data.Yaml
+namespace FSharp.Data
 
 open System
 open FSharp.Data
 
-/// converts the result of a tryParse function to an option type
-let private triedAsOption = function | true, a -> Some a | false, _ -> None
-
 type YamlConversions =
+    /// converts the result of a tryParse function to an option type
+    static member private triedAsOption = function | true, a -> Some a | false, _ -> None 
+    
     static member AsString noneForNullEmpty cultureInfo =
         function
         | YamlValue.String s -> if noneForNullEmpty && String.IsNullOrEmpty s then None else Some s
@@ -63,5 +63,5 @@ type YamlConversions =
     
     static member AsGuid =
         function
-        | YamlValue.String s -> s.Trim() |> Guid.TryParse |> triedAsOption
+        | YamlValue.String s -> s.Trim() |> Guid.TryParse |> YamlConversions.triedAsOption
         | _ -> None

@@ -1,4 +1,4 @@
-﻿module FSharp.Data
+﻿namespace FSharp.Data
 
 open System
 open System.Collections.Generic
@@ -16,7 +16,7 @@ type YamlValue =
     | Sequence of elements: YamlValue []
     | Boolean of bool
     | Null
-
+    
     static member private FromObjTree (node: obj) =
         match node with
         | :? string as str ->
