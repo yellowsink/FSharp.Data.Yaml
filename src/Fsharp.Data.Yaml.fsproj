@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <Compile Include="YamlValue.fs" />
+    <Compile Include="YamlConversions.fs" />
+    <Compile Include="YamlExtensions.fs" />
   </ItemGroup>
 
   <ItemGroup>
