@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="NumberParser.fs" />
     <Compile Include="YamlValue.fs" />
     <Compile Include="YamlConversions.fs" />
     <Compile Include="YamlExtensions.fs" />

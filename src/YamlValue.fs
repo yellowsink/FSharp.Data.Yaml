@@ -4,14 +4,14 @@ open System
 open System.Collections.Generic
 open System.IO
 open System.Text
+open FSharp.Data
 open YamlDotNet.Serialization
 
 [<RequireQualifiedAccess>]
 type YamlValue =
     | String of string
     | Integer of int
-    | Decimal of decimal
-    //| Float of float
+    | Float of double
     | Mapping of properties: (YamlValue * YamlValue) []
     | Sequence of elements: YamlValue []
     | Boolean of bool
@@ -23,15 +23,13 @@ type YamlValue =
             match str with
             | "true" -> YamlValue.Boolean true
             | "false" -> YamlValue.Boolean false
-            | _ ->
-                match Decimal.TryParse str with
-                | false, _ -> YamlValue.String str
-                | true, d ->
-                    match Int32.TryParse str with
-                    // if no decimal places
-                    | true, i when (decimal i) = d -> YamlValue.Integer i
-                    | _ -> YamlValue.Decimal d
+            | NumberParser.Integer i -> YamlValue.Integer i
+            | NumberParser.Float f -> YamlValue.Float f
+            | _ -> YamlValue.String str
 
+        | :? int as i -> YamlValue.Integer i
+        | :? float as f -> YamlValue.Float f
+        
         | :? IList<obj> as list ->
             list
             |> Seq.toArray
